@@ -41,14 +41,15 @@ public:
         this->duration = "";
     }
 
-    void package_display()
-    {
-
-        cout << "ID" << ": " << getid() << endl;
-        cout << "Price" << ": " << fixed << setprecision(2) << getPrice() << endl;
-        cout << "Duration" << ": " << getDuration() << endl;
-    }
+    friend void package_display(Package);
 };
+
+void package_display(Package package)
+{
+    cout << "ID" << ": " << package.getid() << endl;
+    cout << "Price" << ": " << fixed << setprecision(2) << package.getPrice() << endl;
+    cout << "Duration" << ": " << package.getDuration() << endl;
+}
 
 class Session
 {
@@ -163,7 +164,6 @@ public:
         cout << "Email\t: " << this->email << endl;
         cout << "===============================" << endl;
     }
-    friend bool isBirthday(Person, string);
     void promptSetPerson()
     {
         cout << "Enter name: ";
@@ -215,8 +215,10 @@ public:
     {
         return this->getName();
     }
-    void initSession(Session* session,int count){
-        for(int i = 0; i < count; i++){
+    void initSession(Session *session, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
             this->session[i] = session[i];
         }
     }
@@ -319,11 +321,6 @@ public:
     }
 };
 
-bool isBirthday(Person person, string today)
-{
-    return person.birthday == today;
-}
-
 int main()
 {
     Person person[] = {
@@ -346,8 +343,7 @@ int main()
         Person("RuanMei", 21, "0123 Fir Blvd", "012-123456728", "RuanMei@email.com", "05/20"),
         Person("James", 29, "4567 Hemlock Ln", "012-123456731", "James@email.com", "09/01"),
         Person("Hina", 33, "8901 Juniper Pkwy", "012-123456736", "Hina@email.com", "12/31"),
-        Person("QingRu", 34, "2348 Poplar Cir", "012-123456730", "QingRu@email.com", "07/31")
-    };
+        Person("QingRu", 34, "2348 Poplar Cir", "012-123456730", "QingRu@email.com", "07/31")};
     Customer customer[] = {
         Customer(person[0], 1),
         Customer(person[1], 2),
@@ -373,6 +369,51 @@ int main()
         Trainer(person[18], 4),
         Trainer(person[19], 5),
     };
+    Session session1[] = {
+        Session("10:00-11:00", "Monday"),
+        Session("10:00-12:00", "Tuesday"),
+        Session("8:00-11:00", "Wednesday"),
+        Session("9:00-11:00", "Thursday"),
+        Session("22:00-23:00", "Friday"),
+        Session("4:00-7:00", "Saturday"),
+        Session("8:00-9:00", "Sunday")};
+    Session session2[] = {
+        Session("8:00-11:00", "Monday"),
+        Session("9:00-12:00", "Tuesday"),
+        Session("8:00-11:00", "Wednesday"),
+        Session("9:00-11:00", "Thursday"),
+        Session("22:00-23:00", "Friday"),
+        Session("4:00-7:00", "Saturday"),
+        Session("8:00-9:00", "Sunday")};
+    Session session3[] = {
+        Session("7:00-11:00", "Monday"),
+        Session("10:00-12:00", "Tuesday"),
+        Session("8:00-11:00", "Wednesday"),
+        Session("9:00-11:00", "Thursday"),
+        Session("22:00-23:00", "Friday"),
+        Session("4:00-7:00", "Saturday"),
+        Session("8:00-9:00", "Sunday")};
+    Session session4[] = {
+        Session("10:00-11:00", "Monday"),
+        Session("10:00-12:00", "Tuesday"),
+        Session("8:00-11:00", "Wednesday"),
+        Session("9:00-11:00", "Thursday"),
+        Session("7:00-23:00", "Friday"),
+        Session("4:00-7:00", "Saturday"),
+        Session("8:00-9:00", "Sunday")};
+    Session session5[] = {
+        Session("10:00-11:00", "Monday"),
+        Session("3:00-12:00", "Tuesday"),
+        Session("8:00-11:00", "Wednesday"),
+        Session("9:00-11:00", "Thursday"),
+        Session("12:00-23:00", "Friday"),
+        Session("4:00-7:00", "Saturday"),
+        Session("8:00-9:00", "Sunday")};
+    trainer[0].initSession(session1, 7);
+    trainer[1].initSession(session2, 7);
+    trainer[2].initSession(session3, 7);
+    trainer[3].initSession(session4, 7);
+    trainer[4].initSession(session5, 7);
     Package package[] = {
         Package("1", 30.00, "Monthly Package"),
         Package("2", 60.00, "3 Months Package"),
@@ -381,13 +422,14 @@ int main()
     Person *persons = person;
     Customer *customers = customer;
     Trainer *trainers;
-    int count = 20 ;
+    int count = 20;
     int customerCount = 15;
     int trainerCount = 5;
-    int SystemChoice = -1 ;
+    int SystemChoice = -1;
     while (SystemChoice != 0)
     {
-        cout << "Welcome to the Gym Management System" << endl << endl;
+        cout << "Welcome to the Gym Management System" << endl
+             << endl;
         cout << "1. Initialize System" << endl;
         cout << "2. Display All Person" << endl;
         cout << "3. Display All Customer" << endl;
@@ -461,7 +503,7 @@ int main()
             {
                 cout << "===============================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
-                package[i].package_display();
+                package_display(package[i]);
             }
         }
         else if (SystemChoice == 6)
@@ -495,7 +537,7 @@ int main()
             {
                 cout << "===============================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
-                package[i].package_display();
+                package_display(package[i]);
             }
             int packageID;
             cin >> packageID;
