@@ -156,7 +156,7 @@ public:
         this->email = "";
         this->birthday = birthday;
     }
-    void display()
+    void displayBasic()
     {
         cout << "===============================" << endl;
         cout << "Name\t: " << this->name << endl;
@@ -165,6 +165,26 @@ public:
         cout << "Phone\t: " << this->phone << endl;
         cout << "Email\t: " << this->email << endl;
         cout << "===============================" << endl;
+    }
+    friend bool isBirthday(Person, string);
+    void promptSetPerson()
+    {
+        cout << "Enter name: ";
+        cin >> this->name;
+        cout << "Enter age: ";
+        cin >> this->age;
+
+        cout << "Enter address: ";
+        cin >> this->address;
+
+        cout << "Enter phone: ";
+        cin >> this->phone;
+
+        cout << "Enter email: ";
+        cin >> this->email;
+
+        cout << "Enter birthday: ";
+        cin >> this->birthday;
     }
 };
 
@@ -183,6 +203,12 @@ public:
 
         this->managerID = managerID;
     };
+    void promptSetManager()
+    {
+        promptSetPerson();
+        cout << "Enter Manager ID: ";
+        cin >> this->managerID;
+    }
 };
 
 class Customer : Person
@@ -208,6 +234,12 @@ public:
         this->setEmail(person.getEmail());
 
         this->customerID = customerID;
+    }
+    void promptSetCustomer()
+    {
+        promptSetPerson();
+        cout << "Enter Customer ID: ";
+        cin >> this->customerID;
     }
 };
 
@@ -240,8 +272,18 @@ public:
             cout << (i + 1) << session[i].date << session[i].time << endl;
         }
         cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    void promptSetTrainer()
+    {
+        promptSetPerson();
+        cout << "Enter Trainer ID: ";
+        cin >> this->TrainerID;
     }
 };
+
+bool isBirthday(Person person, string today)
+{
+    return person.birthday == today;
+}
 
 int main()
 {
