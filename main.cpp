@@ -130,21 +130,23 @@ public:
     }
 };
 
-class Trainer
+class Trainer : Person
 {
+private:
+string Trainer_Id;
 };
 
 class Package
 {
 private:
-    string id;
+    string Package_Id;
     double price;
     string duration;
 
 public:
     string getid()
     {
-        return id;
+        return Package_Id;
     }
 
     double getPrice()
@@ -157,11 +159,18 @@ public:
         return duration;
     }
 
-    Package(string id, double price, string duration)
+    Package(string Package_Id, double price, string duration)
     {
-        this->id = id;
+        this->Package_Id = Package_Id;
         this->price = price;
         this->duration = duration;
+    }
+
+    Package()
+    {
+        this->Package_Id = "";
+        this->price = 0.00;
+        this->duration = "";
     }
 
     void package_display()
