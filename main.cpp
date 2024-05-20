@@ -184,7 +184,6 @@ public:
         cin >> this->birthday;
     }
 };
-
 class Trainer : Person
 {
 private:
@@ -203,17 +202,18 @@ public:
     }
     Trainer()
     {
-        this->setName("");
+        this->setName(" ");
         this->setAge(0);
-        this->setAddress("");
-        this->setPhone("");
-        this->setEmail("");
+        this->setAddress(" ");
+        this->setPhone(" ");
+        this->setEmail(" ");
         this->TrainerID = 0;
     }
 
-    string getName()
+    string getsName()
     {
-        return this->getName();
+        string name = getName();
+        return name;
     }
     void initSession(Session *session, int count)
     {
@@ -272,7 +272,7 @@ class Customer : Person
 public:
     float calculateBMI()
     {
-        float bmi = weight / (height * height);
+        float bmi = weight / ((height * 0.01) * (height * 0.01));
         return bmi;
     };
     Customer()
@@ -288,8 +288,10 @@ public:
         this->currentPackage = Package();
         this->assignedTrainer = Trainer();
     }
-    Customer(Person person, int customerID)
+    Customer(Person person, int customerID,int weight,int height)
     {
+        this->weight = weight;
+        this->height = height;
         this->currentPackage = Package();
         this->setName(person.getName());
         this->setAge(person.getAge());
@@ -315,12 +317,12 @@ public:
         cout << "Weight\t: " << this->weight << endl;
         cout << "Height\t: " << this->height << endl;
         cout << "BMI\t: " << calculateBMI() << endl;
-        cout << "Assigned Trainer:\t" << this->assignedTrainer.getName() << endl;
+        cout << "Assigned Trainer:\t" << this->assignedTrainer.getsName() << endl;
         cout << "Current Package:\t" << this->currentPackage.getDuration() << endl;
         cout << "========================================" << endl;
     }
 };
-
+// 3，4，5，8 broken
 int main()
 {
     Person person[] = {
@@ -345,21 +347,21 @@ int main()
         Person("Hina", 33, "8901 Juniper Pkwy", "012-123456736", "Hina@email.com", "12/31"),
         Person("QingRu", 34, "2348 Poplar Cir", "012-123456730", "QingRu@email.com", "07/31")};
     Customer customer[] = {
-        Customer(person[0], 1),
-        Customer(person[1], 2),
-        Customer(person[2], 3),
-        Customer(person[3], 4),
-        Customer(person[4], 5),
-        Customer(person[5], 6),
-        Customer(person[6], 7),
-        Customer(person[7], 8),
-        Customer(person[8], 9),
-        Customer(person[9], 10),
-        Customer(person[10], 11),
-        Customer(person[11], 12),
-        Customer(person[12], 13),
-        Customer(person[13], 14),
-        Customer(person[14], 15),
+        Customer(person[0], 1, 42, 140),
+        Customer(person[1], 2, 42, 151),
+        Customer(person[2], 3, 70, 185),
+        Customer(person[3], 4, 60, 175),
+        Customer(person[4], 5, 60, 184),
+        Customer(person[5], 6, 32, 162),
+        Customer(person[6], 7, 54, 182),
+        Customer(person[7], 8, 62, 161),
+        Customer(person[8], 9, 63, 162),
+        Customer(person[9], 1, 62, 160),
+        Customer(person[10], 1, 62, 171),
+        Customer(person[11], 1, 72, 172),
+        Customer(person[12], 1, 42, 173),
+        Customer(person[13], 1, 52, 174),
+        Customer(person[14], 1, 82, 175),
 
     };
     Trainer trainer[] = {
@@ -421,7 +423,7 @@ int main()
         Package("4", 160.00, "1 Year Package")};
     Person *persons = person;
     Customer *customers = customer;
-    Trainer *trainers;
+    Trainer *trainers = trainer;
     int count = 20;
     int customerCount = 15;
     int trainerCount = 5;
@@ -444,7 +446,14 @@ int main()
         cin >> SystemChoice;
         if (SystemChoice == 1)
         {
-
+            if (persons == person)
+            {
+                cout << "Deleted old data" << endl;
+                delete persons;
+                delete customers;
+                delete trainers;
+                
+            }
             cout << "How many person you want to initialize?";
             cin >> count;
             persons = new Person[count];
@@ -459,7 +468,11 @@ int main()
                 cin >> choice;
                 if (choice == 1)
                 {
-                    customers[customerCount] = Customer(persons[i], customerCount + 1);
+                    cout << "Enter Height and Weight ";
+                    int h = 0;
+                    int w = 0;
+                    cin >> h >> w;
+                    customers[customerCount] = Customer(persons[i], customerCount + 1,w,h);
                     customerCount++;
                 }
                 else if (choice == 2)
@@ -483,6 +496,7 @@ int main()
         {
             for (int i = 0; i < customerCount; i++)
             {
+
                 cout << "===============================" << endl;
                 cout << "\t Customer " << i + 1 << "" << endl;
                 customers[i].displayInfo();
@@ -511,21 +525,21 @@ int main()
             cout << "Enter persons ID: ";
             int id;
             cin >> id;
-            persons[id].displayBasic();
+            persons[id - 1].displayBasic();
         }
         else if (SystemChoice == 7)
         {
             cout << "Enter Customer ID: ";
             int id;
             cin >> id;
-            customers[id].displayInfo();
+            customers[id - 1].displayInfo();
         }
         else if (SystemChoice == 8)
         {
             cout << "Enter Trainer ID: ";
             int id;
             cin >> id;
-            trainers[id].displayInfo();
+            trainers[id - 1].displayInfo();
         }
         else if (SystemChoice == 9)
         {
