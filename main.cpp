@@ -115,7 +115,6 @@ class Customer : Person
     Package currentPackage;
 
 public:
-
     float calculateBMI()
     {
         float bmi = weight / (height * height);
@@ -137,20 +136,32 @@ public:
 class Trainer : Person
 {
 private:
-string Trainer_Id;
+    int TrainerID;
+
+public:
+    Trainer(Person person, int TrainerID)
+    {
+        this->setName(person.getName());
+        this->setAge(person.getAge());
+        this->setAddress(person.getAddress());
+        this->setPhone(person.getPhone());
+        this->setEmail(person.getEmail());
+
+        this->TrainerID = TrainerID;
+    }
 };
 
 class Package
 {
 private:
-    string Package_Id;
+    string PackageID;
     double price;
     string duration;
 
 public:
     string getid()
     {
-        return Package_Id;
+        return PackageID;
     }
 
     double getPrice()
@@ -163,16 +174,16 @@ public:
         return duration;
     }
 
-    Package(string Package_Id, double price, string duration)
+    Package(string PackageID, double price, string duration)
     {
-        this->Package_Id = Package_Id;
+        this->PackageID = PackageID;
         this->price = price;
         this->duration = duration;
     }
 
     Package()
     {
-        this->Package_Id = "";
+        this->PackageID = "";
         this->price = 0.00;
         this->duration = "";
     }
