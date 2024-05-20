@@ -105,6 +105,18 @@ public:
 class Manager : Person
 {
     int managerID;
+    public: 
+    Manager(Person person, int managerID)
+    {
+        this->setName(person.getName());
+        this->setAge(person.getAge());
+        this->setAddress(person.getAddress());
+        this->setPhone(person.getPhone());
+        this->setEmail(person.getEmail());
+
+        this->managerID = managerID;
+    };
+
 };
 
 class Customer : Person
