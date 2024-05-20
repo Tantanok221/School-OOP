@@ -139,7 +139,7 @@ public:
         this->email = "";
         this->birthday = birthday;
     }
-    void display()
+    void displayBasic()
     {
         cout << "===============================" << endl;
         cout << "Name\t: " << this->name << endl;
@@ -149,6 +149,7 @@ public:
         cout << "Email\t: " << this->email << endl;
         cout << "===============================" << endl;
     }
+    friend bool isBirthday(Person , string);   
 };
 
 class Manager : Person
@@ -212,7 +213,9 @@ public:
     }
 };
 
-
+bool isBirthday(Person person,string today){
+    return person.birthday == today;
+}
 
 int main()
 {
