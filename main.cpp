@@ -52,6 +52,23 @@ public:
     }
 };
 
+class Session
+{
+public:
+    string time;
+    string date;
+    Session(string time, string date)
+    {
+        this->time = time;
+        this->date = date;
+    }
+    Session()
+    {
+        this->time="";
+        this->date="";
+    }
+};
+
 class Person
 {
 private:
@@ -154,7 +171,8 @@ public:
 class Manager : Person
 {
     int managerID;
-    public: 
+
+public:
     Manager(Person person, int managerID)
     {
         this->setName(person.getName());
@@ -165,7 +183,6 @@ class Manager : Person
 
         this->managerID = managerID;
     };
-
 };
 
 class Customer : Person
@@ -211,8 +228,6 @@ public:
         this->TrainerID = TrainerID;
     }
 };
-
-
 
 int main()
 {
