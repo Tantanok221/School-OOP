@@ -43,9 +43,7 @@ public:
 
     void package_display()
     {
-        cout << "========================================" << endl;
-        cout << "             Package Details" << endl;
-        cout << "========================================" << endl;
+
         cout << "ID" << ": " << getid() << endl;
         cout << "Price" << ": " << fixed << setprecision(2) << getPrice() << endl;
         cout << "Duration" << ": " << getDuration() << endl;
@@ -67,7 +65,6 @@ public:
         this->date = "";
         this->time = "";
     }
-
 };
 
 class Person
@@ -159,7 +156,6 @@ public:
     }
     void displayBasic()
     {
-        cout << "===============================" << endl;
         cout << "Name\t: " << this->name << endl;
         cout << "Age\t: " << this->age << endl;
         cout << "Address\t: " << this->address << endl;
@@ -189,61 +185,6 @@ public:
     }
 };
 
-class Manager : Person
-{
-    int managerID;
-
-public:
-    Manager(Person person, int managerID)
-    {
-        this->setName(person.getName());
-        this->setAge(person.getAge());
-        this->setAddress(person.getAddress());
-        this->setPhone(person.getPhone());
-        this->setEmail(person.getEmail());
-
-        this->managerID = managerID;
-    };
-    void promptSetManager()
-    {
-        promptSetPerson();
-        cout << "Enter Manager ID: ";
-        cin >> this->managerID;
-    }
-};
-
-class Customer : Person
-{
-    int customerID;
-    float weight;
-    float height;
-    Package currentPackage;
-
-public:
-    float calculateBMI()
-    {
-        float bmi = weight / (height * height);
-        return bmi;
-    };
-    Customer(Person person, int customerID)
-    {
-        this->currentPackage = Package();
-        this->setName(person.getName());
-        this->setAge(person.getAge());
-        this->setAddress(person.getAddress());
-        this->setPhone(person.getPhone());
-        this->setEmail(person.getEmail());
-
-        this->customerID = customerID;
-    }
-    void promptSetCustomer()
-    {
-        promptSetPerson();
-        cout << "Enter Customer ID: ";
-        cin >> this->customerID;
-    }
-};
-
 class Trainer : Person
 {
 private:
@@ -258,27 +199,123 @@ public:
         this->setAddress(person.getAddress());
         this->setPhone(person.getPhone());
         this->setEmail(person.getEmail());
-
         this->TrainerID = TrainerID;
     }
+    Trainer()
+    {
+        this->setName("");
+        this->setAge(0);
+        this->setAddress("");
+        this->setPhone("");
+        this->setEmail("");
+        this->TrainerID = 0;
+    }
 
+    string getName()
+    {
+        return this->getName();
+    }
+    void initSession(Session* session,int count){
+        for(int i = 0; i < count; i++){
+            this->session[i] = session[i];
+        }
+    }
     void set_session()
     {
+        cout << "How many session you want to set?";
+        int count;
+        cin >> count;
+        for (int i = 0; i < count; i++)
+        {
+            cout << "Enter Date for Session " << i + 1 << ": ";
+            cin >> session[i].date;
+            cout << "Enter Time for Session " << i + 1 << ": ";
+            cin >> session[i].time;
+        }
     }
     void print_session()
     {
-        cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-        for (int i = 0; i < 4; i++)
+        cout << "-------- Session Infomation ----------------------" << endl;
+        cout << "Trainer\t: " << this->getName() << endl;
+        cout << "Trainer ID\t: " << this->TrainerID << endl;
+        for (int i = 0; i < 7; i++)
         {
-            cout << (i + 1) << session[i].date << session[i].time << endl;
+            cout << "Session " << (i + 1) << "\t: " << session[i].date << " - " << session[i].time << endl;
         }
-        cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+        cout << "-------------------------------------------------" << endl;
     }
     void promptSetTrainer()
     {
         promptSetPerson();
         cout << "Enter Trainer ID: ";
         cin >> this->TrainerID;
+    }
+    void displayInfo()
+    {
+        displayBasic();
+        cout << "Customer ID\t: " << this->TrainerID << endl;
+        print_session();
+        cout << "========================================" << endl;
+    }
+};
+
+class Customer : Person
+{
+    int customerID;
+    float weight;
+    float height;
+    Package currentPackage;
+    Trainer assignedTrainer;
+
+public:
+    float calculateBMI()
+    {
+        float bmi = weight / (height * height);
+        return bmi;
+    };
+    Customer()
+    {
+        this->setName("");
+        this->setAge(0);
+        this->setAddress("");
+        this->setPhone("");
+        this->setEmail("");
+        this->customerID = 0;
+        this->weight = 0;
+        this->height = 0;
+        this->currentPackage = Package();
+        this->assignedTrainer = Trainer();
+    }
+    Customer(Person person, int customerID)
+    {
+        this->currentPackage = Package();
+        this->setName(person.getName());
+        this->setAge(person.getAge());
+        this->setAddress(person.getAddress());
+        this->setPhone(person.getPhone());
+        this->setEmail(person.getEmail());
+        this->customerID = customerID;
+    }
+    void assignPackage(Package package)
+    {
+        this->currentPackage = package;
+    }
+    void promptSetCustomer()
+    {
+        promptSetPerson();
+        cout << "Enter Customer ID: ";
+        cin >> this->customerID;
+    }
+    void displayInfo()
+    {
+        displayBasic();
+        cout << "Customer ID\t: " << this->customerID << endl;
+        cout << "Weight\t: " << this->weight << endl;
+        cout << "Height\t: " << this->height << endl;
+        cout << "BMI\t: " << calculateBMI() << endl;
+        cout << "Assigned Trainer:\t" << this->assignedTrainer.getName() << endl;
+        cout << "Current Package:\t" << this->currentPackage.getDuration() << endl;
+        cout << "========================================" << endl;
     }
 };
 
@@ -309,12 +346,160 @@ int main()
         Person("RuanMei", 21, "0123 Fir Blvd", "012-123456728", "RuanMei@email.com", "05/20"),
         Person("James", 29, "4567 Hemlock Ln", "012-123456731", "James@email.com", "09/01"),
         Person("Hina", 33, "8901 Juniper Pkwy", "012-123456736", "Hina@email.com", "12/31"),
-        Person("QingRu", 34, "2348 Poplar Cir", "012-123456730", "QingRu@email.com", "07/31")};
+        Person("QingRu", 34, "2348 Poplar Cir", "012-123456730", "QingRu@email.com", "07/31")
+    };
+    Customer customer[] = {
+        Customer(person[0], 1),
+        Customer(person[1], 2),
+        Customer(person[2], 3),
+        Customer(person[3], 4),
+        Customer(person[4], 5),
+        Customer(person[5], 6),
+        Customer(person[6], 7),
+        Customer(person[7], 8),
+        Customer(person[8], 9),
+        Customer(person[9], 10),
+        Customer(person[10], 11),
+        Customer(person[11], 12),
+        Customer(person[12], 13),
+        Customer(person[13], 14),
+        Customer(person[14], 15),
 
+    };
+    Trainer trainer[] = {
+        Trainer(person[15], 1),
+        Trainer(person[16], 2),
+        Trainer(person[17], 3),
+        Trainer(person[18], 4),
+        Trainer(person[19], 5),
+    };
     Package package[] = {
-        Package("1", 160.00, "Monthly"),
-        Package("2", 300.00, "2Month"),
-        Package("3", 640.00, "6Month"),
-        Package("4", 1600.00, "Annually")};
+        Package("1", 30.00, "Monthly Package"),
+        Package("2", 60.00, "3 Months Package"),
+        Package("3", 90.00, "6 Month Package"),
+        Package("4", 160.00, "1 Year Package")};
+    Person *persons = person;
+    Customer *customers = customer;
+    Trainer *trainers;
+    int count = 20 ;
+    int customerCount = 15;
+    int trainerCount = 5;
+    int SystemChoice = -1 ;
+    while (SystemChoice != 0)
+    {
+        cout << "Welcome to the Gym Management System" << endl << endl;
+        cout << "1. Initialize System" << endl;
+        cout << "2. Display All Person" << endl;
+        cout << "3. Display All Customer" << endl;
+        cout << "4. Display All Trainer" << endl;
+        cout << "5. Display All Package" << endl;
+        cout << "6. Query Person" << endl;
+        cout << "7. Query Customer" << endl;
+        cout << "8. Query Trainer" << endl;
+        cout << "9. Assign Package" << endl;
+        cout << "Enter your choice: " << endl;
+        cout << "0 to exit" << endl;
+        cin >> SystemChoice;
+        if (SystemChoice == 1)
+        {
 
+            cout << "How many person you want to initialize?";
+            cin >> count;
+            persons = new Person[count];
+            customers = new Customer[count];
+            trainers = new Trainer[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                persons[i].promptSetPerson();
+                int choice;
+                cout << "Choose 1 If It was a Customer,Choose 2 if it was a Trainer: ";
+                cin >> choice;
+                if (choice == 1)
+                {
+                    customers[customerCount] = Customer(persons[i], customerCount + 1);
+                    customerCount++;
+                }
+                else if (choice == 2)
+                {
+                    trainers[trainerCount] = Trainer(persons[i], trainerCount + 1);
+                    trainers[trainerCount].set_session();
+                    trainerCount++;
+                }
+            }
+        }
+        else if (SystemChoice == 2)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                cout << "===============================" << endl;
+                cout << "\t Person " << i + 1 << "" << endl;
+                persons[i].displayBasic();
+            }
+        }
+        else if (SystemChoice == 3)
+        {
+            for (int i = 0; i < customerCount; i++)
+            {
+                cout << "===============================" << endl;
+                cout << "\t Customer " << i + 1 << "" << endl;
+                customers[i].displayInfo();
+            }
+        }
+        else if (SystemChoice == 4)
+        {
+            for (int i = 0; i < trainerCount; i++)
+            {
+                cout << "===============================" << endl;
+                cout << "\t Trainer " << i + 1 << "" << endl;
+                trainers[i].displayInfo();
+            }
+        }
+        else if (SystemChoice == 5)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                cout << "===============================" << endl;
+                cout << "\t Package " << i + 1 << "" << endl;
+                package[i].package_display();
+            }
+        }
+        else if (SystemChoice == 6)
+        {
+            cout << "Enter persons ID: ";
+            int id;
+            cin >> id;
+            persons[id].displayBasic();
+        }
+        else if (SystemChoice == 7)
+        {
+            cout << "Enter Customer ID: ";
+            int id;
+            cin >> id;
+            customers[id].displayInfo();
+        }
+        else if (SystemChoice == 8)
+        {
+            cout << "Enter Trainer ID: ";
+            int id;
+            cin >> id;
+            trainers[id].displayInfo();
+        }
+        else if (SystemChoice == 9)
+        {
+            cout << "Enter Customer ID: ";
+            int id;
+            cin >> id;
+            cout << "Enter Package ID: ";
+            for (int i = 0; i < 4; i++)
+            {
+                cout << "===============================" << endl;
+                cout << "\t Package " << i + 1 << "" << endl;
+                package[i].package_display();
+            }
+            int packageID;
+            cin >> packageID;
+            customers[id].assignPackage(package[packageID]);
+        }
+    }
 }
