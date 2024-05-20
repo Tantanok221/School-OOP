@@ -112,8 +112,10 @@ class Customer : Person
     int customerID;
     float weight;
     float height;
+    Package currentPackage;
 
 public:
+
     float calculateBMI()
     {
         float bmi = weight / (height * height);
@@ -121,11 +123,13 @@ public:
     };
     Customer(Person person, int customerID)
     {
+        this->currentPackage = Package();
         this->setName(person.getName());
         this->setAge(person.getAge());
         this->setAddress(person.getAddress());
         this->setPhone(person.getPhone());
         this->setEmail(person.getEmail());
+
         this->customerID = customerID;
     }
 };
