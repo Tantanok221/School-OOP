@@ -67,6 +67,7 @@ public:
         this->date = "";
         this->time = "";
     }
+
 };
 
 class Person
@@ -272,6 +273,7 @@ public:
             cout << (i + 1) << session[i].date << session[i].time << endl;
         }
         cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    }
     void promptSetTrainer()
     {
         promptSetPerson();
@@ -314,4 +316,5 @@ int main()
         Package("2", 300.00, "2Month"),
         Package("3", 640.00, "6Month"),
         Package("4", 1600.00, "Annually")};
+
 }
