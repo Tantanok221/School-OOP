@@ -3,6 +3,55 @@
 #include <string>
 
 using namespace std;
+
+class Package
+{
+private:
+    string PackageID;
+    double price;
+    string duration;
+
+public:
+    string getid()
+    {
+        return PackageID;
+    }
+
+    double getPrice()
+    {
+        return price;
+    }
+
+    string getDuration()
+    {
+        return duration;
+    }
+
+    Package(string PackageID, double price, string duration)
+    {
+        this->PackageID = PackageID;
+        this->price = price;
+        this->duration = duration;
+    }
+
+    Package()
+    {
+        this->PackageID = "";
+        this->price = 0.00;
+        this->duration = "";
+    }
+
+    void package_display()
+    {
+        cout << "========================================" << endl;
+        cout << "             Package Details" << endl;
+        cout << "========================================" << endl;
+        cout << "ID" << ": " << getid() << endl;
+        cout << "Price" << ": " << fixed << setprecision(2) << getPrice() << endl;
+        cout << "Duration" << ": " << getDuration() << endl;
+    }
+};
+
 class Person
 {
 private:
@@ -163,53 +212,7 @@ public:
     }
 };
 
-class Package
-{
-private:
-    string PackageID;
-    double price;
-    string duration;
 
-public:
-    string getid()
-    {
-        return PackageID;
-    }
-
-    double getPrice()
-    {
-        return price;
-    }
-
-    string getDuration()
-    {
-        return duration;
-    }
-
-    Package(string PackageID, double price, string duration)
-    {
-        this->PackageID = PackageID;
-        this->price = price;
-        this->duration = duration;
-    }
-
-    Package()
-    {
-        this->PackageID = "";
-        this->price = 0.00;
-        this->duration = "";
-    }
-
-    void package_display()
-    {
-        cout << "========================================" << endl;
-        cout << "             Package Details" << endl;
-        cout << "========================================" << endl;
-        cout << "ID" << ": " << getid() << endl;
-        cout << "Price" << ": " << fixed << setprecision(2) << getPrice() << endl;
-        cout << "Duration" << ": " << getDuration() << endl;
-    }
-};
 
 int main()
 {
