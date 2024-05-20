@@ -64,8 +64,8 @@ public:
     }
     Session()
     {
-        this->time="";
-        this->date="";
+        this->time = "";
+        this->date = "";
     }
 };
 
@@ -138,7 +138,7 @@ public:
         this->email = "";
         this->birthday = "";
     }
-    Person(string name, int age, string address, string phone, string emai, string birthdayl)
+    Person(string name, int age, string address, string phone, string email, string birthdayl)
     {
         this->name = name;
         this->age = age;
@@ -166,7 +166,26 @@ public:
         cout << "Email\t: " << this->email << endl;
         cout << "===============================" << endl;
     }
-    friend bool isBirthday(Person , string);   
+    friend bool isBirthday(Person, string);
+    void promptSetPerson()
+    {
+        cout << "Enter name: ";
+        cin >> this->name;
+        cout << "Enter age: ";
+        cin >> this->age;
+
+        cout << "Enter address: ";
+        cin >> this->address;
+
+        cout << "Enter phone: ";
+        cin >> this->phone;
+
+        cout << "Enter email: ";
+        cin >> this->email;
+
+        cout << "Enter birthday: ";
+        cin >> this->birthday;
+    }
 };
 
 class Manager : Person
@@ -184,6 +203,12 @@ public:
 
         this->managerID = managerID;
     };
+    void promptSetManager()
+    {
+        promptSetPerson();
+        cout << "Enter Manager ID: ";
+        cin >> this->managerID;
+    }
 };
 
 class Customer : Person
@@ -210,6 +235,12 @@ public:
 
         this->customerID = customerID;
     }
+    void promptSetCustomer()
+    {
+        promptSetPerson();
+        cout << "Enter Customer ID: ";
+        cin >> this->customerID;
+    }
 };
 
 class Trainer : Person
@@ -228,9 +259,16 @@ public:
 
         this->TrainerID = TrainerID;
     }
+    void promptSetTrainer()
+    {
+        promptSetPerson();
+        cout << "Enter Trainer ID: ";
+        cin >> this->TrainerID;
+    }
 };
 
-bool isBirthday(Person person,string today){
+bool isBirthday(Person person, string today)
+{
     return person.birthday == today;
 }
 
