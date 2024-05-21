@@ -162,7 +162,7 @@ public:
         cout << "Address\t: " << this->address << endl;
         cout << "Phone\t: " << this->phone << endl;
         cout << "Email\t: " << this->email << endl;
-        cout << "===============================" << endl;
+        cout << "=======================================" << endl;
     }
     void promptSetPerson()
     {
