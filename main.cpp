@@ -107,7 +107,7 @@ public:
     {
         this->name = name;
     }
-    int setAge(int age)
+    void setAge(int age)
     {
         this->age = age;
     }
