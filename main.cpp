@@ -244,7 +244,7 @@ public:
         {
             cout << "Session " << (i + 1) << "\t: " << session[i].date << " - " << session[i].time << endl;
         }
-        cout << "-----------------------------------------" << endl;
+
     }
     void promptSetTrainer()
     {
