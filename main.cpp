@@ -46,9 +46,9 @@ public:
 
 void package_display(Package package)
 {
-    cout << "ID" << ": " << package.getid() << endl;
-    cout << "Price" << ": " << fixed << setprecision(2) << package.getPrice() << endl;
-    cout << "Duration" << ": " << package.getDuration() << endl;
+    cout << "ID" << "       : " << package.getid() << endl;
+    cout << "Price" << "    : " << fixed << setprecision(2) << package.getPrice() << endl;
+    cout << "Duration" << " : " << package.getDuration() << endl;
 }
 
 class Session
@@ -162,7 +162,7 @@ public:
         cout << "Address\t: " << this->address << endl;
         cout << "Phone\t: " << this->phone << endl;
         cout << "Email\t: " << this->email << endl;
-        cout << "=======================================" << endl;
+        cout << "=========================================" << endl;
     }
     void promptSetPerson()
     {
@@ -237,14 +237,14 @@ public:
     }
     void print_session()
     {
-        cout << "-------- Session Infomation ----------------------" << endl;
+        cout << "---------- Session Infomation ----------" << endl;
         cout << "Trainer\t: " << this->getName() << endl;
         cout << "Trainer ID\t: " << this->TrainerID << endl;
         for (int i = 0; i < 7; i++)
         {
             cout << "Session " << (i + 1) << "\t: " << session[i].date << " - " << session[i].time << endl;
         }
-        cout << "-------------------------------------------------" << endl;
+        cout << "-----------------------------------------" << endl;
     }
     void promptSetTrainer()
     {
@@ -257,7 +257,7 @@ public:
         displayBasic();
         cout << "Customer ID\t: " << this->TrainerID << endl;
         print_session();
-        cout << "========================================" << endl;
+        cout << "=========================================" << endl;
     }
 };
 
@@ -314,12 +314,12 @@ public:
     {
         displayBasic();
         cout << "Customer ID\t: " << this->customerID << endl;
-        cout << "Weight\t: " << this->weight << endl;
-        cout << "Height\t: " << this->height << endl;
-        cout << "BMI\t: " << calculateBMI() << endl;
+        cout << "Weight\t        : " << this->weight << endl;
+        cout << "Height\t        : " << this->height << endl;
+        cout << "BMI\t        : " << calculateBMI() << endl;
         cout << "Assigned Trainer:\t" << this->assignedTrainer.getsName() << endl;
-        cout << "Current Package:\t" << this->currentPackage.getDuration() << endl;
-        cout << "========================================" << endl;
+        cout << "Current Package :\t" << this->currentPackage.getDuration() << endl;
+        cout << "=========================================" << endl;
     }
 };
 // 3，4，5，8 broken
@@ -480,7 +480,7 @@ int main()
         {
             for (int i = 0; i < count; i++)
             {
-                cout << "===============================" << endl;
+                cout << "=========================================" << endl;
                 cout << "\t Person " << i + 1 << "" << endl;
                 persons[i].displayBasic();
             }
@@ -490,7 +490,7 @@ int main()
             for (int i = 0; i < customerCount; i++)
             {
 
-                cout << "===============================" << endl;
+                cout << "=========================================" << endl;
                 cout << "\t Customer " << i + 1 << "" << endl;
                 customers[i].displayInfo();
             }
@@ -499,7 +499,7 @@ int main()
         {
             for (int i = 0; i < trainerCount; i++)
             {
-                cout << "===============================" << endl;
+                cout << "=========================================" << endl;
                 cout << "\t Trainer " << i + 1 << "" << endl;
                 trainers[i].displayInfo();
             }
@@ -508,7 +508,7 @@ int main()
         {
             for (int i = 0; i < 4; i++)
             {
-                cout << "===============================" << endl;
+                cout << "=========================================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
                 package_display(package[i]);
             }
@@ -542,7 +542,7 @@ int main()
             cout << "Enter Package ID: ";
             for (int i = 0; i < 4; i++)
             {
-                cout << "===============================" << endl;
+                cout << "=========================================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
                 package_display(package[i]);
             }
