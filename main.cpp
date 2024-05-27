@@ -521,6 +521,7 @@ int main()
         }
         else if (SystemChoice == 6)
         {
+            cout << "=========================================" << endl;
             cout << "Enter persons ID: ";
             int id;
             cin >> id;
@@ -528,6 +529,7 @@ int main()
         }
         else if (SystemChoice == 7)
         {
+            cout << "=========================================" << endl;
             cout << "Enter Customer ID: ";
             int id;
             cin >> id;
@@ -535,6 +537,7 @@ int main()
         }
         else if (SystemChoice == 8)
         {
+            cout << "=========================================" << endl;
             cout << "Enter Trainer ID: ";
             int id;
             cin >> id;
@@ -542,6 +545,7 @@ int main()
         }
         else if (SystemChoice == 9)
         {
+            cout << "=========================================" << endl;
             cout << "Enter Customer ID: ";
             int id;
             cin >> id;
