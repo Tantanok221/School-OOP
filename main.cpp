@@ -459,6 +459,7 @@ int main()
 
             for (int i = 0; i < counts; i++)
             {
+                cout << "=========================================" << endl;
                 persons[i].promptSetPerson();
                 int choice;
                 cout << "Choose 1 If It was a Customer,Choose 2 if it was a Trainer: ";
