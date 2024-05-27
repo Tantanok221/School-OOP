@@ -539,13 +539,13 @@ int main()
             cout << "Enter Customer ID: ";
             int id;
             cin >> id;
-            cout << "Enter Package ID: ";
             for (int i = 0; i < 4; i++)
             {
                 cout << "===============================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
                 package_display(package[i]);
             }
+            cout << "Enter Package ID: ";
             int packageID;
             cin >> packageID;
             customers[id].assignPackage(package[packageID]);
