@@ -446,14 +446,7 @@ int main()
         cin >> SystemChoice;
         if (SystemChoice == 1)
         {
-            if (persons == person)
-            {
-                cout << "Deleted old data" << endl;
-                delete persons;
-                delete customers;
-                delete trainers;
-                
-            }
+            
             cout << "How many person you want to initialize?";
             cin >> count;
             persons = new Person[count];
