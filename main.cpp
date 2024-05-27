@@ -46,9 +46,11 @@ public:
 
 void package_display(Package package)
 {
+    cout << "=========================================" << endl;
     cout << "ID" << "       : " << package.getid() << endl;
     cout << "Price" << "    : " << fixed << setprecision(2) << package.getPrice() << endl;
     cout << "Duration" << " : " << package.getDuration() << endl;
+    cout << "=========================================" << endl;
 }
 
 class Session
@@ -237,7 +239,7 @@ public:
     }
     void print_session()
     {
-        cout << "---------- Session Infomation ----------" << endl;
+        cout << "---------- Session Infomation -----------" << endl;
         cout << "Trainer\t: " << this->getName() << endl;
         cout << "Trainer ID\t: " << this->TrainerID << endl;
         for (int i = 0; i < 7; i++)
@@ -506,9 +508,9 @@ int main()
         }
         else if (SystemChoice == 5)
         {
+            cout << "=========================================" << endl;
             for (int i = 0; i < 4; i++)
             {
-                cout << "=========================================" << endl;
                 cout << "\t Package " << i + 1 << "" << endl;
                 package_display(package[i]);
             }
