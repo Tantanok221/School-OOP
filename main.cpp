@@ -448,14 +448,16 @@ int main()
         cin >> SystemChoice;
         if (SystemChoice == 1)
         {
-            
-            cout << "How many person you want to initialize?";
-            cin >> count;
-            persons = new Person[count];
-            customers = new Customer[count];
-            trainers = new Trainer[count];
+            customerCount = 0;
+            trainerCount = 0;
+            int counts = 0;
+            cout << "How many person you want to initialize: ";
+            cin >> counts;
+            persons = new Person[counts];
+            customers = new Customer[counts];
+            trainers = new Trainer[counts];
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < counts; i++)
             {
                 persons[i].promptSetPerson();
                 int choice;
@@ -463,10 +465,12 @@ int main()
                 cin >> choice;
                 if (choice == 1)
                 {
-                    cout << "Enter Height and Weight ";
+                    cout << "Enter Height: ";
                     int h = 0;
                     int w = 0;
-                    cin >> h >> w;
+                    cin >> h;
+                    cout << "Enter Weight: ";
+                    cin >> w;
                     customers[customerCount] = Customer(persons[i], customerCount + 1,w,h);
                     customerCount++;
                 }
