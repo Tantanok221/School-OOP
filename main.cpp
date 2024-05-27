@@ -551,7 +551,7 @@ int main()
                 cout << "\t Package " << i + 1 << "" << endl;
                 package_display(package[i]);
             }
-            cout << "Enter Package ID: " << endl;
+            cout << "Enter Package ID: ";
             int packageID;
             cin >> packageID;
             customers[id].assignPackage(package[packageID]);
